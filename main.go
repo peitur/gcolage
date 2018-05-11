@@ -1,14 +1,24 @@
 package main
 
 import (
+	"github.com/peitur/gcolage"
 	"fmt"
-  "github.com/peitur/gcolage"
+	"log"
 )
 
 
 func main( ){
   fmt.Println("Welcome ...")
-  gcolage.PrintHelp()
-  var t, _ = gcolage.GetFileInfo( "main.go" )
-  fmt.Println( t )
+
+	var filename = "src/github.com/peitur/gcolage/test/sample.json"
+
+  var t, e = gcolage.GetFileInfo( filename )
+	if e != nil{
+		log.Fatal( e )
+	}
+
+  log.Println( ">>> ", t )
+
+ 	fmt.Println( gcolage.ReadConfigFile( "test/config.json" ) )
+
 }

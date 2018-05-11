@@ -1,0 +1,5 @@
+{
+	"ConfigPath":"test/collect.d",
+	"TargetPath":"test/save.d",
+	"Checksum":"sha256"
+}

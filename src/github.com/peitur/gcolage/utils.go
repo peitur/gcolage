@@ -1,35 +1,52 @@
 package gcolage
 
 import (
-	"time"
+	"encoding/json"
+	"bufio"
+	"log"
 	"os"
-	"syscall"
 )
 
-type FileInfo struct {
-		filename string
-		size int64
-		ctime time.Time
-		mtime time.Time
-		atime time.Time
-		checksum string
+
+func ConcatBytes( a []byte, b []byte ) []byte {
+	var res []byte = a
+	for _, x := range b {
+		res = append( res, x )
+	}
+	return res
 }
 
-func GetFileInfo( filename string ) ( FileInfo, error) {
-	var stt, err = os.Stat( filename )
-	var t FileInfo
+func ReadTextFile( filename string ) []byte {
+	var res []byte
+	fd, err := os.Open( filename )
+	if err != nil {
+	    log.Fatal(err)
+	}
+	defer fd.Close()
 
-	if err == nil{
-
-		t.filename = filename
-		t.mtime = stt.ModTime()
-
-		var stat = stt.Sys().(*syscall.Stat_t)
-		t.atime = time.Unix(int64(stat.Atim.Sec), int64(stat.Atim.Nsec))
-		t.ctime = time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
-
-		return t, nil
+	scr := bufio.NewScanner( fd )
+	for scr.Scan() {
+	  res = ConcatBytes( res, scr.Bytes() )
 	}
 
-	return t, err
+	if err := scr.Err(); err != nil {
+	    log.Fatal(err)
+	}
+
+	return res
+}
+
+
+func BytesToString(data []byte) string {
+	return string(data[:])
+}
+
+func JsonEncodeConfig( data []byte ) {
+
+}
+
+func JsonDecodeConfig( data []byte ) ( map[string]*json.RawMessage ){
+	var objmap map[string]*json.RawMessage
+	json.Unmarshal( data, &objmap )
+	return objmap
 }

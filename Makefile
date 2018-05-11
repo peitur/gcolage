@@ -7,10 +7,10 @@ setup:
 	export GOPATH=${PWD}
 
 build: setup
-	go build 
+	go build
 
 run: setup
 	go run ${MAIN}
 
-
-
+clean: setup
+	go clean

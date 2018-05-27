@@ -2,9 +2,6 @@ package gcolage
 
 import (
 	"encoding/json"
-	"bufio"
-	"log"
-	"os"
 )
 
 
@@ -16,25 +13,6 @@ func ConcatBytes( a []byte, b []byte ) []byte {
 	return res
 }
 
-func ReadTextFile( filename string ) []byte {
-	var res []byte
-	fd, err := os.Open( filename )
-	if err != nil {
-	    log.Fatal(err)
-	}
-	defer fd.Close()
-
-	scr := bufio.NewScanner( fd )
-	for scr.Scan() {
-	  res = ConcatBytes( res, scr.Bytes() )
-	}
-
-	if err := scr.Err(); err != nil {
-	    log.Fatal(err)
-	}
-
-	return res
-}
 
 
 func BytesToString(data []byte) string {

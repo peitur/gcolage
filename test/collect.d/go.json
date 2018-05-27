@@ -1,3 +1,4 @@
 [
-	{"version":"1.10.2", "url":"https://dl.google.com/go/go<% version %>.linux-amd64.tar.gz" }
+	{"version":"1.10.2", "url":"https://dl.google.com/go/go<%version%>.src.tar.gz"},
+	{"version":"1.10.2", "url":"https://dl.google.com/go/go<% version %>.linux-amd64.tar.gz", "filename":"golang-<%version%>.linux-amd64.tar.gz", "signature":"" }
 ]

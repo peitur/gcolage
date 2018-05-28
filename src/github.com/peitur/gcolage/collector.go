@@ -2,7 +2,6 @@ package gcolage
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"regexp"
@@ -32,8 +31,11 @@ func LoadCollectorConfigFiles(dir string) []FileCollectorSpecs {
 		if m == true {
 			path := dir + "/" + f.Name()
 			log.Printf("Loading config from: %s", path)
-			//			data = append(data, LoadCollectorConfigSpecs(path))
-			fmt.Println(LoadCollectorConfigSpecs(path))
+
+			sps := FileCollectorSpecs{}
+			spl := LoadCollectorConfigSpecs(path)
+			sps.Specs = spl
+			data = append(data, sps)
 		}
 	}
 

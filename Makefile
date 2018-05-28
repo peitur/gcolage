@@ -4,7 +4,7 @@ MAIN=main.go
 all: setup build
 
 setup:
-	export GOPATH=${PWD}
+	eval "export GOPATH=${PWD}"
 
 build: setup
 	go build

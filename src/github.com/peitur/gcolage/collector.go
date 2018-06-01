@@ -42,6 +42,12 @@ func LoadCollectorConfigFiles(dir string) []FileCollectorSpecs {
 	return data
 }
 
+func SaveCollectorFileInfo(filename string, target_dir string, info FileInfo) {
+	var fi, _ = json.MarshalIndent(info, "", " ")
+	var path = target_dir + "/" + filename
+	ioutil.WriteFile(path, fi, 0644)
+}
+
 func LoadCollectorConfigSpecs(filename string) []FileCollectorSpec {
 	buffer, err := ReadFileRaw(filename)
 	if err != nil {

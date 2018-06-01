@@ -9,16 +9,21 @@ import (
 )
 
 type FileInfo struct {
-	filename string
-	size     int64
-	ctime    time.Time
-	mtime    time.Time
-	atime    time.Time
-	checksum FileChecksum
+	Filename string       `json:"filenmae"`
+	Size     int64        `json:"size"`
+	Ctime    time.Time    `json:"ctime"`
+	Mtime    time.Time    `json:"mtime"`
+	Atime    time.Time    `json:"atime"`
+	Checksum FileChecksum `json:"checksum"`
 }
 
 type FileInfoList struct {
-	Collection []FileInfo
+	Files []FileInfo
+}
+
+type FileInfoTracker struct {
+	File   FileInfo `json:"file"`
+	Source string   `json:"source"`
 }
 
 func GetFileInfo(filename string) (FileInfo, error) {
@@ -27,14 +32,16 @@ func GetFileInfo(filename string) (FileInfo, error) {
 
 	if err == nil {
 
-		t.filename = filename
-		t.size = stt.Size()
-		t.mtime = stt.ModTime()
+		t.Filename = filename
+		t.Size = stt.Size()
+		t.Mtime = stt.ModTime()
 
 		//  	var stat = stt.Sys()
 		var stat = stt.Sys().(*syscall.Stat_t)
-		t.atime = time.Unix(int64(stat.Atim.Sec), int64(stat.Atim.Nsec))
-		t.ctime = time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
+		t.Atime = time.Unix(int64(stat.Atim.Sec), int64(stat.Atim.Nsec))
+		t.Ctime = time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
+
+		t.Checksum = HashDataFile(filename, "sha256 ")
 
 		return t, nil
 	}

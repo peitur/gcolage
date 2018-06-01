@@ -12,9 +12,9 @@ type FileCollectorConfig struct {
 }
 
 type PipCollectorConfig struct {
-	ConfigPath string
-	TargetPath string
-	Checksum   string
+	ConfigPath string `json:"config_path"`
+	TargetPath string `json:"target_path"`
+	Checksum   string `json:"checksum"`
 }
 
 func ReadConfigFile(filename string) FileCollectorConfig {

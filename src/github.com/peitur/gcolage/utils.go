@@ -1,30 +1,23 @@
 package gcolage
 
 import (
-	"encoding/json"
+	"regexp"
 )
 
-
-func ConcatBytes( a []byte, b []byte ) []byte {
+func ConcatBytes(a []byte, b []byte) []byte {
 	var res []byte = a
 	for _, x := range b {
-		res = append( res, x )
+		res = append(res, x)
 	}
 	return res
 }
-
-
 
 func BytesToString(data []byte) string {
 	return string(data[:])
 }
 
-func JsonEncodeConfig( data []byte ) {
+func ApplyVersionString(v string, str string) string {
 
-}
-
-func JsonDecodeConfig( data []byte ) ( map[string]*json.RawMessage ){
-	var objmap map[string]*json.RawMessage
-	json.Unmarshal( data, &objmap )
-	return objmap
+	re := regexp.MustCompile("<%\\s*version\\s*%>")
+	return re.ReplaceAllString(str, v)
 }

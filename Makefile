@@ -7,7 +7,7 @@ setup:
 	eval "export GOPATH=${PWD}"
 
 build: setup
-	go build
+	go build -v
 
 run: setup
 	go run ${MAIN}

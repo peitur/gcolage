@@ -30,7 +30,7 @@ func main() {
 	fi, _ := gcolage.GetFileInfo(filename)
 	gcolage.SaveCollectorFileInfo("x.json", "/tmp", fi)
 	fmt.Println("----------------------------------------------------------")
-
+	fmt.Println(gcolage.RequestFile("https://ftp.lysator.liu.se/pub/CentOS/7.5.1804/os/x86_64/repodata/repomd.xml", "/tmp/stuff.xml"))
 	fmt.Println("----------------------------------------------------------")
 
 }

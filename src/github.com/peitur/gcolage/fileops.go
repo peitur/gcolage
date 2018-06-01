@@ -68,7 +68,3 @@ func ReadFileRaw(filename string) ([]byte, error) {
 	}
 	return res, nil
 }
-
-func WriteFileRaw(filename string, data []byte) (uint, error) {
-	return 0, nil
-}

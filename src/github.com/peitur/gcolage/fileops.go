@@ -68,3 +68,7 @@ func ReadFileRaw(filename string) ([]byte, error) {
 	}
 	return res, nil
 }
+
+func FileExists(filename string) bool {
+	return false
+}

@@ -15,7 +15,8 @@ type FileCollectorSpec struct {
 }
 
 type FileCollectorSpecs struct {
-	Specs []FileCollectorSpec
+	Filename string
+	Specs    []FileCollectorSpec
 }
 
 func LoadCollectorConfigFiles(dir string) []FileCollectorSpecs {
@@ -35,6 +36,7 @@ func LoadCollectorConfigFiles(dir string) []FileCollectorSpecs {
 			sps := FileCollectorSpecs{}
 			spl := LoadCollectorConfigSpecs(path)
 			sps.Specs = spl
+			sps.Filename = f.Name()
 			data = append(data, sps)
 		}
 	}
@@ -55,7 +57,6 @@ func LoadCollectorConfigSpecs(filename string) []FileCollectorSpec {
 	}
 
 	//	var conf FileCollectorSpecs
-
 	spec := []FileCollectorSpec{}
 	err = json.Unmarshal([]byte(buffer), &spec)
 	if err != nil {

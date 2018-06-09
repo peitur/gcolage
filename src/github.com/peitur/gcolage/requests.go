@@ -7,8 +7,8 @@ import (
 	"os"
 )
 
-func RequestGetJson(url string) {
-
+func RequestJson(url string) (err error) {
+	return nil
 }
 
 func RequestFile(url string, dsr string) (err error) {

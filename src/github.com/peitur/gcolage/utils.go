@@ -17,7 +17,9 @@ func BytesToString(data []byte) string {
 }
 
 func ApplyVersionString(v string, str string) string {
+	return regexp.MustCompile("<%\\s*version\\s*%>").ReplaceAllString(str, v)
+}
 
-	re := regexp.MustCompile("<%\\s*version\\s*%>")
-	return re.ReplaceAllString(str, v)
+func ApplyProductString(v string, str string) string {
+	return regexp.MustCompile("<%\\s*product\\s*%>").ReplaceAllString(str, v)
 }

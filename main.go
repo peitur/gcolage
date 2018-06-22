@@ -41,12 +41,18 @@ func main() {
 				}
 
 				s_Filename = gcolage.ApplyVersionString(s.Version, s_Filename)
-
+				t_Filename := config.TargetPath + "/" + s_Filename
 				log.Printf(">>> [%s] %s", s_Filename, s_Url)
+				if !gcolage.FileExists(t_Filename) {
+					log.Printf("||>>> Downloading %s -> %s", s_Url, t_Filename)
+					//					gcolage.RequestFile(s_Url, t_Filename)
+				} else {
+					log.Printf("||>>> Already downloaded %s -> skipping", s_Url)
+				}
 			}
 		}
 	} else {
-		log.Panic("Method not supported")
+		log.Panic("Method not supported, Supported methods are [get]")
 	}
 	/*
 		log.Println(">>> ", t)

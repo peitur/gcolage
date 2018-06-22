@@ -45,7 +45,8 @@ func main() {
 				log.Printf(">>> [%s] %s", s_Filename, s_Url)
 				if !gcolage.FileExists(t_Filename) {
 					log.Printf("||>>> Downloading %s -> %s", s_Url, t_Filename)
-					//					gcolage.RequestFile(s_Url, t_Filename)
+					gcolage.RequestFile(s_Url, t_Filename)
+
 				} else {
 					log.Printf("||>>> Already downloaded %s -> skipping", s_Url)
 				}

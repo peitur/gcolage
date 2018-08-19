@@ -12,6 +12,7 @@ type FileCollectorSpec struct {
 	Url       string `json:"url"`
 	Filename  string `json:"filename"`
 	Signature string `json:"signature"`
+	Debug     string `json:"debug"`
 }
 
 type FileCollectorSpecs struct {

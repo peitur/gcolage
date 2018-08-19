@@ -1,0 +1,4 @@
+[
+	{"version":"21.0", "url":"http://erlang.org/download/otp_src_<% version %>.tar.gz"},
+	{"version":"21.0", "url":"http://erlang.org/download/otp_src_<% version %>.tar.gz", "filename":"otp-<%version%>.linux-src.tar.gz", "signature":"" }
+]

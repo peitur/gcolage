@@ -33,8 +33,16 @@ func JsonGenericSlice(buffer []byte) ([]interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return gen.([]interface{}), nil
+}
+
+func JsonGenericMap(buffer []byte) (map[string]interface{}, error) {
+	var gen interface{}
+	err := json.Unmarshal(buffer, &gen)
+	if err != nil {
+		return nil, err
+	}
+	return gen.(map[string]interface{}), nil
 }
 
 func JsonTest(filename string) {

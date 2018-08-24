@@ -20,14 +20,14 @@ func main() {
 	}
 
 	var mode string = os.Args[1]
-	log.Printf("Mode: %s", mode)
-	log.Printf("Filename: %s", configfile)
-	log.Printf(">> Size: %d", t.Size)
-	log.Printf(">> Checksum: %s: %s", t.Checksum.Algorithm, t.Checksum.Checksum)
+	log.Printf("Mode: %s\n", mode)
+	log.Printf("Filename: %s\n", configfile)
+	log.Printf(">> Size: %d\n", t.Size)
+	log.Printf(">> Checksum: %s: %s\n", t.Checksum.Algorithm, t.Checksum.Checksum)
 
 	if mode == "get" {
 		config := gcolage.ReadConfigFile(configfile)
-		log.Printf("Loding configfile: %s", configfile)
+		log.Printf("Loding configfile: %s\n", configfile)
 		specs := gcolage.LoadCollectorConfigFiles(config.ConfigPath)
 
 		for spec := range specs {
@@ -42,16 +42,22 @@ func main() {
 
 				s_Filename = gcolage.ApplyVersionString(s.Version, s_Filename)
 				t_Filename := config.TargetPath + "/" + s_Filename
-				log.Printf(">>> [%s] %s", s_Filename, s_Url)
+				log.Printf(">>> [%s] %s\n", s_Filename, s_Url)
 				if !gcolage.FileExists(t_Filename) {
-					log.Printf("||>>> Downloading %s -> %s", s_Url, t_Filename)
+					log.Printf("||>>> Downloading %s -> %s\n", s_Url, t_Filename)
 					gcolage.RequestFile(s_Url, t_Filename)
 
 				} else {
-					log.Printf("||>>> Already downloaded %s -> skipping", s_Url)
+					log.Printf("||>>> Already downloaded %s -> skipping\n", s_Url)
 				}
 			}
 		}
+	} else if mode == "pip" {
+		pkglistfile := "requirements.txt"
+		fmt.Printf(">> Requirements file: %s\n", pkglistfile)
+
+		gcolage.PipRequestProjectInfo("kiwi")
+
 	} else {
 		log.Panic("Method not supported, Supported methods are [get]")
 	}

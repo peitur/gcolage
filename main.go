@@ -56,7 +56,7 @@ func main() {
 		pkglistfile := "requirements.txt"
 		fmt.Printf(">> Requirements file: %s\n", pkglistfile)
 
-		gcolage.PipRequestProjectInfo("kiwi")
+		fmt.Println(gcolage.PipRequestProjectInfo("kiwi"))
 
 	} else {
 		log.Panic("Method not supported, Supported methods are [get]")

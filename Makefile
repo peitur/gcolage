@@ -1,16 +1,16 @@
 GOPATH=${PWD}
 MAIN=main.go
 
-all: setup build
+all: .setup build
 
-setup:
+.setup:
 	eval "export GOPATH=${PWD}"
 
-build: setup
+build: .setup
 	go build -v
 
-run: setup
+run: .setup
 	go run ${MAIN}
 
-clean: setup
+clean: .setup
 	go clean

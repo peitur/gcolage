@@ -9,6 +9,15 @@ import (
 	"github.com/peitur/gcolage"
 )
 
+func print_help() {
+	fmt.Printf("Help gcolage:\n")
+	fmt.Printf("Modes supported are [get,pip]\n")
+	fmt.Printf("\tget: <colfile>\n")
+	fmt.Printf("\n")
+	fmt.Printf("\tpip: <reqfile>\n")
+	fmt.Printf("\n")
+}
+
 func main() {
 	fmt.Println("Welcome ...")
 
@@ -19,6 +28,11 @@ func main() {
 		log.Fatal(e)
 	}
 
+	if len(os.Args) == 1 {
+		print_help()
+		os.Exit(0)
+	}
+
 	var mode string = os.Args[1]
 	log.Printf("Mode: %s\n", mode)
 	log.Printf("Filename: %s\n", configfile)
@@ -26,6 +40,7 @@ func main() {
 	log.Printf(">> Checksum: %s: %s\n", t.Checksum.Algorithm, t.Checksum.Checksum)
 
 	if mode == "get" {
+
 		config := gcolage.ReadConfigFile(configfile)
 		log.Printf("Loding configfile: %s\n", configfile)
 		specs := gcolage.LoadCollectorConfigFiles(config.ConfigPath)
@@ -52,14 +67,21 @@ func main() {
 				}
 			}
 		}
+
 	} else if mode == "pip" {
+
 		pkglistfile := "requirements.txt"
 		fmt.Printf(">> Requirements file: %s\n", pkglistfile)
 
-		fmt.Println(gcolage.PipRequestProjectInfo("kiwi"))
+		x, _ := gcolage.PipRequestProjectInfo("kiwi")
+		fmt.Println(x.Info)
 
+	} else if mode == "help" {
+		print_help()
+		os.Exit(0)
 	} else {
-		log.Panic("Method not supported, Supported methods are [get]")
+		print_help()
+		os.Exit(1)
 	}
 	/*
 		log.Println(">>> ", t)

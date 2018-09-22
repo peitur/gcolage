@@ -6,13 +6,13 @@ import (
 )
 
 type FileCollectorConfig struct {
-	ConfigPath string `json:"config_path"`
+	ConfigPath string `json:"collect_path"`
 	TargetPath string `json:"store"`
 	Checksum   string `json:"checksum"`
 }
 
 type PipCollectorConfig struct {
-	ConfigPath string `json:"config_path"`
+	ConfigPath string `json:"config"`
 	TargetPath string `json:"target_path"`
 	Checksum   string `json:"checksum"`
 }

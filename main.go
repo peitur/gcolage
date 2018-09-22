@@ -76,7 +76,11 @@ func main() {
 		//		x, _ := gcolage.PipRequestProjectInfo("kiwi")
 		//		fmt.Println(x.Info)
 
-		fmt.Println(gcolage.CreateTempDir("/tmp", "gocolage"))
+		tmpdir, err := gcolage.CreateTempDir("/tmp", "gco")
+		fmt.Println("TD: ", tmpdir)
+		if err == nil {
+			gcolage.RemoveDirTree(tmpdir)
+		}
 
 	} else if mode == "help" {
 		print_help()

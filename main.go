@@ -73,8 +73,10 @@ func main() {
 		pkglistfile := "requirements.txt"
 		fmt.Printf(">> Requirements file: %s\n", pkglistfile)
 
-		x, _ := gcolage.PipRequestProjectInfo("kiwi")
-		fmt.Println(x.Info)
+		//		x, _ := gcolage.PipRequestProjectInfo("kiwi")
+		//		fmt.Println(x.Info)
+
+		fmt.Println(gcolage.CreateTempDir("/tmp", "gocolage"))
 
 	} else if mode == "help" {
 		print_help()

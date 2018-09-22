@@ -118,11 +118,16 @@ func PipRequestProjectInfo(project string) (PipProjectData, error) {
 
 /*
 Find requirements by
-1. download package
+1. download package and create meta file
 2. unpack package to temp dir
 3. read requirements files (requirements.txt and ... )
-4. check
+4. check pipy for requirement (existance and version )
+5. repete from 1. for requirement
 */
+func PipDownloadProjectFile(project string, trg string) error {
+	return nil
+}
+
 func PipReadRequirements(filename string) []string {
 	var res []string
 	buffer, err := ReadFileRaw(filename)

@@ -9,6 +9,7 @@ import (
 
 type PipInfoData struct {
 	Version string
+	Name    string
 }
 
 type PipReleaseData struct {
@@ -107,6 +108,7 @@ func PipRequestProjectInfo(project string) (PipProjectData, error) {
 	var rinf PipInfoData
 
 	rinf.Version, _ = info["version"].(string)
+	rinf.Name, _ = info["name"].(string)
 
 	res.Info = rinf
 	res.Releases = PipAllReleaseInfo(releases)

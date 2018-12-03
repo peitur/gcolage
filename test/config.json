@@ -1,5 +1,5 @@
 {
-	"config_path":"test/collect.d",
+	"collect_path":"test/collect.d",
 	"store":"test/save.d",
 	"checksum":"sha256"
 }

@@ -1,0 +1,3 @@
+[
+	{"version":"21.0", "url":"https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64", "filename":"gitlab-runner-<%version%>-linux-amd64"}
+]

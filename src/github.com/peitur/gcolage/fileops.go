@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"log"
 	"os"
-	"syscall"
 	"time"
 )
 
@@ -37,9 +36,9 @@ func GetFileInfo(filename string) (FileInfo, error) {
 		t.Mtime = stt.ModTime()
 
 		//  	var stat = stt.Sys()
-		xs := stt.Sys().(*syscall.Stat_t)
-		t.Atime = time.Unix(int64(xs.Atim.Sec), int64(xs.Atim.Nsec))
-		t.Ctime = time.Unix(int64(xs.Ctim.Sec), int64(xs.Ctim.Nsec))
+		//xs := stt.Sys().(*syscall.Stat_t)
+		//		t.Atime = time.Unix(int64(xs.Atim.Sec), int64(xs.Atim.Nsec))
+		//		t.Ctime = time.Unix(int64(xs.Ctim.Sec), int64(xs.Ctim.Nsec))
 
 		t.Checksum = HashDataFile(filename, "sha256 ")
 

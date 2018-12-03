@@ -7,10 +7,10 @@ all: .setup build
 	eval "export GOPATH=${PWD}"
 
 build: .setup
-	go build -v
+	export GOPATH=${PWD} && go build -v
 
 run: .setup
-	go run ${MAIN}
+	export GOPATH=${PWD} && go run ${MAIN}
 
 clean: .setup
 	go clean

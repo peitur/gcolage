@@ -1,16 +1,21 @@
 GOPATH=${PWD}
-MAIN=main.go
+GCOLAGE=gcolage.go
+FTREECHKS=ftreechksum.go
 
-all: .setup build
+GCOLAGEBIN=gcolage
+FTREECHKSBIN=ftreechksum
+
+all: .setup gcolage ftreechksum
 
 .setup:
 	eval "export GOPATH=${PWD}"
 
-build: .setup
-	export GOPATH=${PWD} && go build -v
+gcolage: .setup
+	export GOPATH=${PWD} && go build -v -o ${GCOLAGEBIN} ${GCLAGE}
 
-run: .setup
-	export GOPATH=${PWD} && go run ${MAIN}
+ftreechksum: .setup
+	export GOPATH=${PWD} && go build -v -o ${FTREECHKSBIN} ${FTREECHKS}
+
 
 clean: .setup
 	go clean

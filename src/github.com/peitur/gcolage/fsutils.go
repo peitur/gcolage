@@ -2,9 +2,37 @@ package gcolage
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 )
+
+func DirectoryTree(rp string) ([]string, error) {
+	var res []string
+	var dirs []string
+
+	files, err := ioutil.ReadDir(rp)
+	if err != nil {
+		return make([]string, 0), err
+	}
+
+	for _, file := range files {
+		if file.IsDir() {
+			dirs = append(dirs, fmt.Sprintf("%s/%s", rp, file.Name()))
+		} else {
+			res = append(res, fmt.Sprintf("%s/%s", rp, file.Name()))
+		}
+	}
+
+	for d := range dirs {
+		x, _ := DirectoryTree(dirs[d])
+		for f := range x {
+			res = append(res, x[f])
+		}
+	}
+
+	return res, nil
+}
 
 func CreateTempDir(iroot, iprefix string) (string, error) {
 	var path string = fmt.Sprintf("%s/%s_%s", iroot, iprefix, RandomString(10))
